@@ -1,28 +1,24 @@
-## 
-
 로드 밸런싱은 부하를 분산하는 기술이며, 고가용성은 시스템이 장애 없이 지속적으로 서비스될 수 있도록 설계하는 전략임.
 
 ```mermaid
 graph TD
-    %% 스타일 정의
     classDef point fill:#f9f,stroke:#333,stroke-width:2px;
     classDef basic fill:#e1f5fe,stroke:#01579b,stroke-width:1px;
     classDef algorithm fill:#fff3e0,stroke:#e65100,stroke-width:1px;
     classDef ha fill:#ffebee,stroke:#c62828,stroke-width:1px;
 
     Start((시작)):::point --> L4L7Diff["1. L4 vs L7 로드 밸런서 차이"]:::basic
-    L4L7Diff --> Algorithms["2. 부하 분산 알고리즘 (Round Robin, Least Conn 등)"]:::algorithm
-    Algorithms --> HealthCheck["3. 상태 확인 (Health Check) 메커니즘"]:::basic
-    HealthCheck --> Persistence["4. 세션 유지 (Sticky Session) 전략"]:::algorithm
-    Persistence --> HADesign["5. 고가용성 설계 (Active-Active, Active-Standby)"]:::ha
-    HADesign --> GSLB["6. 광역 부하 분산 (GSLB)"]:::ha
-    Finish((도착)):::point
+    L4L7Diff --> Algorithms["2. 부하 분산 알고리즘"]:::algorithm
+    Algorithms --> HealthCheck["3. 상태 확인 메커니즘"]:::basic
+    HealthCheck --> Persistence["4. 세션 유지 전략"]:::algorithm
+    Persistence --> HADesign["5. 고가용성 설계"]:::ha
+    HADesign --> GSLB["6. 광역 부하 분산"]:::ha
+    GSLB --> Finish((도착)):::point
 
-    subgraph "핵심 학습 포인트"
-    L4L7Diff -.-> K1["패킷 레벨 분산 vs 컨텐츠 기반 분산"]
-    Persistence -.-> K2["Stateless 아키텍처와 세션 불일치 해결"]
-    HADesign -.-> K3["SPOF(단일 장애점) 제거와 이중화"]
-    en
+    %% 핵심 포인트 (주석 형태 대신 별도 노드로 표현)
+    K1[L4/L7 차이점]:::basic --- L4L7Diff
+    K2[세션 불일치 해결]:::algorithm --- Persistence
+    K3[SPOF 제거]:::ha --- HADesign
 ```
 
 ---
