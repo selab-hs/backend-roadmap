@@ -71,16 +71,7 @@ graph TD
 
 ---
 
-## 4. 커밋 메시지 규칙
-
-로드맵 추가 시 커밋 메시지는 다음과 같이 통일합니다.
-
-* `docs: add [주제명] roadmap (00-topic-name)`
-* `docs: update [주제명] 상세 가이드`
-
----
-
-## 5. 기여 프로세스 (Issue & Pull Request)
+## 4. 기여 프로세스 (Issue & Pull Request)
 
 프로젝트에 새로운 내용을 추가하거나 수정할 때는 main 브랜치에 직접 커밋하지 마십시오.
 
